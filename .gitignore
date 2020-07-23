@@ -1,0 +1,13 @@
+# ignore a single file
+compile-blk.sh
+.DS_Store
+bin/
+intarocryptocurrency.pro
+intarocryptocurrencyd
+Intarocryptocurrency-qt
+qrc_bitcoin\.cpp
+build/
+*.qm
+
+
+\.idea/

@@ -1,0 +1,29 @@
+:::: Upgrading on Ubuntu / Debian Linux Distributions ::::
+
+Your default data directory is ~/.Intarocryptocurrency - This folder contains your wallet*, the chain data, and your configuration files
+To backup and clean this folder, do this:
+`cd ~/.Intarocryptocurrency`
+
+You will now be in the data directory. From here, you want to copy out your wallet and important files.
+First, make a backup folder,
+`mkdir ~/intarocryptocurrencybackup`
+
+Then, copy the important files to your backup:
+`cp wallet.dat ~/intarocryptocurrencybackup && cp *.conf ~/intarocryptocurrencybackup`
+
+Now, you can delete the data directory,
+`cd ~/ && rm -r ~/.Intarocryptocurrency`
+
+The folder that contained your data is now deleted. Now, you can compile Intarocryptocurrency like usual,
+`mkdir ~/intarocryptocurrencysource && cd ~/intarocryptocurrencysource && git clone https://github.com/intarocryptocurrency/intarocryptocurrency && cd intarocryptocurrency/src && make -f makefile.unix`
+
+Then, you want to copy your compiled intarocryptocurrencyd from ~/intarocryptocurrencysource/intarocryptocurrency/bin to /usr/local/bin, make sure you remove it if it was already there first, by doing:
+`sudo rm /usr/local/bin/intarocryptocurrencyd && cp ~/intarocryptocurrencysource/intarocryptocurrency/bin/intarocryptocurrencyd /usr/local/bin`
+
+Once it is compiled and installed, you can then restore the data directory. Run intarocryptocurrencyd to initialize the directory,
+`intarocryptocurrencyd`
+
+Then, copy the backed up wallet and configuration files into the new data directory, with:
+`cp ~/intarocryptocurrencybackup/* ~/.Intarocryptocurrency`
+
+Now, run intarocryptocurrencyd again, and your all set , with old wallet and configurations. Just wait for sync and your upgraded!
